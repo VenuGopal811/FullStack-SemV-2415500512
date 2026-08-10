@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            --bg:#f4f7fb; --accent:#1f6feb; --muted:#6b7280; --card:#ffffff;
+        }
+        *{box-sizing:border-box}
+        body {
+            display: flex;
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color:#0f1724;
+            min-height:100vh;
+        }
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg,#754300 0%, #8d530d 100%);
+            color: #fff;
+            padding: 24px;
+            display:flex;
+            flex-direction:column;
+            gap:18px;
+        }
+        .logo h1{font-size:20px;margin:0;letter-spacing:1px}
+        .sidebar nav ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+        .sidebar a{color:rgba(255,255,255,0.95);text-decoration:none;padding:10px;border-radius:8px;display:block}
+        .sidebar a:hover{background:rgba(255,255,255,0.06)}
+        .main-content {flex:1;padding:24px 28px;display:flex;flex-direction:column;gap:18px}
+        .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px}
+        .search{flex:1;max-width:540px;background:#fff;border-radius:10px;padding:8px 12px;display:flex;align-items:center;gap:8px;box-shadow:0 1px 3px rgba(2,6,23,0.06)}
+        .search input{border:0;outline:0;width:100%;font-size:14px}
+        .user{display:flex;align-items:center;gap:12px}
+        .avatar{width:40px;height:40px;border-radius:50%;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:600}
+        .nav-bar{background:transparent;padding:12px 0}
+        .nav-bar ul{list-style:none;display:flex;gap:14px;padding:0;margin:0;color:var(--muted)}
+        .nav-bar a{color:var(--muted);text-decoration:none}
+        .dashboard-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+        .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(15,23,36,0.06);}
+        .card.h-2{grid-column:span 8}
+        .card.h-1{grid-column:span 4}
+        .metrics{display:flex;gap:12px}
+        .metric{flex:1;background:linear-gradient(180deg,#fff,#fbfdff);padding:12px;border-radius:10px}
+        h2{margin:0 0 12px 0;font-size:16px}
+        h3{margin:0 0 8px 0;font-size:14px}
+        p{margin:0;color:var(--muted)}
+        .table{width:100%;border-collapse:collapse}
+        .table th,.table td{padding:10px;text-align:left;border-bottom:1px solid #eef2f6}
+        @media(max-width:900px){
+            .sidebar{display:none}
+            .dashboard-grid{grid-template-columns:repeat(6,1fr)}
+            .card.h-2{grid-column:span 6}
+            .card.h-1{grid-column:span 6}
+            .search{max-width:none}
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <h1>SunDash</h1>
+            <p style="opacity:.9;font-size:13px;margin-top:6px">Beautiful analytics</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+        <div style="margin-top:auto;font-size:13px;opacity:.95">v1.0 • &copy; SunCorp</div>
+    </div>
+
+    <div class="main-content">
+        <div class="topbar">
+            <div style="display:flex;flex-direction:column;">
+                <div style="display:flex;align-items:center;gap:12px">
+                    <h2 style="font-size:18px;margin:0">Dashboard</h2>
+                    <div class="nav-bar">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Team</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin:6px 0 0 0;color:var(--muted);font-size:13px">Welcome back — here's what's happening with your data.</p>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+                <div class="search">
+                    <svg width="16" height="16" fill="#9aa4b2" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                    <input placeholder="Search reports, projects...">
+                </div>
+                <div class="user"><div class="avatar">SD</div><div style="text-align:right"><div style="font-weight:600">Sundar User</div><div style="font-size:12px;color:var(--muted)">Admin</div></div></div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card h-2">
+                <h2>Key Metrics</h2>
+                <div class="metrics" style="margin-top:12px">
+                    <div class="metric">
+                        <h3>Active Users</h3>
+                        <p style="font-size:22px;font-weight:700;margin-top:8px">12,430</p>
+                    </div>
+                    <div class="metric">
+                        <h3>Revenue</h3>
+                        <p style="font-size:22px;font-weight:700;margin-top:8px">$48,200</p>
+                    </div>
+                    <div class="metric">
+                        <h3>Conversion</h3>
+                        <p style="font-size:22px;font-weight:700;margin-top:8px">3.8%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card h-1">
+                <h2>Latest Report</h2>
+                <table class="table" style="margin-top:12px">
+                    <thead>
+                        <tr><th>Project</th><th>Status</th><th>Progress</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Website Redesign</td><td>Live</td><td>95%</td></tr>
+                        <tr><td>Mobile App</td><td>Beta</td><td>68%</td></tr>
+                        <tr><td>Marketing</td><td>Planning</td><td>12%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card h-2">
+                <h2>Activity Feed</h2>
+                <div style="margin-top:12px">
+                    <p style="font-size:13px;color:var(--muted)">• John uploaded new assets to Website Redesign</p>
+                    <p style="font-size:13px;color:var(--muted)">• Payment of $4,200 processed</p>
+                    <p style="font-size:13px;color:var(--muted)">• New signup: alice@example.com</p>
+                </div>
+            </div>
+
+            <div class="card h-1">
+                <h2>Data Readings</h2>
+                <div style="margin-top:10px;color:var(--muted)">
+                    <p>Reading 1: <strong>100</strong></p>
+                    <p>Reading 2: <strong>200</strong></p>
+                    <p>Reading 3: <strong>300</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
