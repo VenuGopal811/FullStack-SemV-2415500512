@@ -1,28 +1,28 @@
 # FS Web Pages
 
-This repository contains a collection of simple HTML/CSS demo pages for practice and UI layout experiments.
+This folder contains standalone HTML/CSS pages for practicing front-end development and experimenting with UI layouts.
 
-## What’s included
+## Pages
 
-- index.html — main landing page starter
-- login-page.html — login page example
-- nav-bar.html — navigation bar example
-- product-cards.html — product card layout
-- dashboard-layout.html — dashboard-style layout
-- bento-layout.html / bento1.html — Bento grid layouts
-- newspaper.html — newspaper-style page layout
-- image-in-bg.html — background image example
-- 3card.html — three-card layout sample
-- test.html — simple test page
+- `index.html` — landing page starter
+- `login-page.html` — login page
+- `nav-bar.html` — navigation bar
+- `product-cards.html` — product card layout
+- `dashboard-layout.html` — dashboard-style layout
+- `bento-layout.html` and `bento1.html` — Bento grid layouts
+- `newspaper.html` — newspaper-style layout
+- `image-in-bg.html` — background image example
+- `3card.html` — three-card layout
+- `test.html` — simple test page
 
-## How to use
+## Run locally
 
-1. Open any HTML file in your browser.
-2. If you want a smoother preview experience, use a live server extension such as Live Server in VS Code.
-3. Edit the HTML/CSS directly to customize the layouts.
+1. Open any `.html` file directly in a browser, or open the folder in VS Code.
+2. For automatic reloads, run the pages with a live server extension such as **Live Server**.
+3. Edit the HTML and CSS, then refresh the page to view your changes.
 
 ## Notes
 
 - This is a static front-end project.
-- No build step or package installation is required.
-- Each file is intended to be viewed independently.
+- No build step, dependencies, or package installation is required.
+- Each page is designed to be viewed independently.
