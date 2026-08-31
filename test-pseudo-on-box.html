@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1, #box2, #box3{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            margin: 10px;
+            background-color: grey;
+        }
+        
+
+        #box1:focus{
+            background-color: red;
+            outline-width:3px;
+            outline-color: blue;
+        }
+        
+        #box2:focus{
+            background-color: yellow;
+        }
+        #box3:focus{
+            background-color: blue;
+
+        }
+
+        #box1:hover, #box2:hover, #box3:hover{
+            box-shadow: 3px 3px 5px black;
+            background-color: black;
+        }
+
+        #box1:active, #box2:active, #box3:active{
+            BOX-SHADOW: 0 0 0 transparent;
+            background-color: grey;
+        }
+
+        a:link{
+            color: red;
+            text-decoration: none;
+        }
+
+        a:visited{
+            color:pink;
+        }
+
+        input{
+            margin: 3px;
+            border-width: 0 0 2px 0;
+            border-color:blue;
+        }
+        input:required{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input:optional{
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+    </style>
+</head>
+<body>
+    <button id="box1">1</button>
+    <button id="box2">2</button>
+    <button id="box3">3</button>
+
+    <a href="#1">LINK CLICK</a>
+    <a href="#">LINK CLICK</a><br/><br/>
+
+    <input type="text" placeholder="First Name" required/><br/><br/>
+    <input type="text" placeholder="Middle Name"/><br/><br/>
+    <input type="text" placeholder="Last Name" required/><br/><br/>
+</body>
+</html>
