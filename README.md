@@ -1,41 +1,57 @@
 # FS Web Pages
 
-This folder contains standalone HTML/CSS pages for practicing front-end development and experimenting with UI layouts.
+A collection of standalone HTML/CSS pages for practicing front-end development, experimenting with UI layouts, and testing CSS features.
 
-## Pages
+## 📁 Project Structure
 
-- `index.html` — landing page starter
-- `login-page.html` — login page
-- `nav-bar.html` — navigation bar
-- `product-cards.html` — product card layout
-- `dashboard-layout.html` — dashboard-style layout
-- `bento-layout.html` and `bento1.html` — Bento grid layouts
-- `newspaper.html` — newspaper-style layout
-- `image-in-bg.html` — background image example
-- `3card.html` — three-card layout
-- `test.html` — simple test page
-- `test-pseudo-classes.html` — CSS pseudo-classes demonstration
+### Core Pages
+- **`index.html`** — Landing page starter
+- **`login-page.html`** — Login form page
+- **`nav-bar.html`** — Navigation bar component
+- **`product-cards.html`** — Product card layout
 
-## CSS Pseudo-Classes Demonstrated
+### Layout Experiments
+- **`dashboard-layout.html`** — Dashboard-style layout with grid/flexbox
+- **`bento-layout.html`**, **`bento1.html`** — Bento grid layouts
+- **`newspaper.html`**, **`newspaper-layout-with-image.html`** — Newspaper-style layouts
+- **`3card.html`** — Three-card horizontal layout
+- **`wrap-around-image.html`** — Image with text wrap
 
-The `test-pseudo-classes.html` page demonstrates:
+### Design & Visual Tests
+- **`gradient.html`** — CSS gradient experiments
+- **`light-from-center.html`** — Light/glow effect from center
+- **`image-in-bg.html`** — Background image examples
+- **`energy-output.html`** — Energy/power visualization
+- **`health0bar.html`** — Health bar/progress bar UI
 
-- `:hover` — changes the button appearance when hovered
-- `:active` — changes the button while it is being clicked
-- `:focus` — adds a border when the button receives focus
-- `:link` — styles an unvisited link
-- `:visited` — styles a visited link
-- `:checked` — styles a selected checkbox
-- `:not(:checked)` — styles an unselected checkbox
+### CSS Feature Tests
+- **`test-pseudo-classes.html`** — CSS pseudo-classes (`:hover`, `:active`, `:focus`, `:link`, `:visited`, `:checked`)
+- **`test-pseudo.html`** — Pseudo-elements (`:before`, `:after`)
+- **`test-pseudo-on-box.html`** — Pseudo-classes on box elements
+- **`test-float.html`** — Float layout and clearing techniques
+- **`test-section.html`** — Section/container styling
+- **`test-typography.html`** — Typography and text styling
 
-## Run Locally
+### Miscellaneous
+- **`test.html`**, **`test1.html`**, **`test2.html`**, **`test3.html`** — General test pages
 
-1. Open any `.html` file directly in a browser, or open the folder in VS Code.
-2. For automatic reloads, run the pages with a live server extension such as **Live Server**.
-3. Edit the HTML and CSS, then refresh the page to view your changes.
+## 🚀 Quick Start
 
-## Notes
+1. **Open directly in browser:** Double-click any `.html` file
+2. **With Live Reload:** Open the folder in VS Code and use the **Live Server** extension
+3. **Edit & View:** Make changes to HTML/CSS and refresh the page to see updates
 
-- This is a static front-end project.
-- No build step, dependencies, or package installation is required.
-- Each page is designed to be viewed independently.
+## 📝 Notes
+
+- **No build required** — All pages are static HTML/CSS
+- **No dependencies** — Just plain HTML and CSS, no packages needed
+- **Independent pages** — Each file works standalone; no shared state between pages
+- **Practice project** — Designed for learning front-end fundamentals
+
+## 🎯 CSS Features Demonstrated
+
+- **Pseudo-classes:** `:hover`, `:active`, `:focus`, `:link`, `:visited`, `:checked`
+- **Pseudo-elements:** `:before`, `:after`
+- **Layouts:** Flexbox, CSS Grid, Float
+- **Effects:** Gradients, shadows, glows, transforms
+- **Responsive design:** Flexible containers and responsive units
