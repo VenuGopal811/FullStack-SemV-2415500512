@@ -52,6 +52,10 @@
             border-width: 0 0 2px 0;
             border-color:blue;
         }
+        input:enabled{
+            background-color:lightgray;
+            color:black;
+        }
         input:required{
             font-family: Arial, Helvetica, sans-serif;
         }
@@ -73,6 +77,13 @@
         input:out-of-range{
             font-weight:100;
         }
+        
+
+        input:disabled{
+            background-color: grey;
+            border-width:0px;
+            color:white;
+        }
 
     </style>
 </head>
@@ -89,5 +100,6 @@
     <input type="text" placeholder="Last Name" required/><br/><br/>
     <input type="email" placeholder="Email" required/><br/><br/>
     <input type="number" placeholder="Age" min="18" max="80" required/><br/><br/>
+    <input type="text" value="Mathura" disabled/><br/><br/>
 </body>
 </html>
