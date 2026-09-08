@@ -15,10 +15,8 @@
             display: grid;
             height:500px;
             width:500px;
-            grid-template-areas: 
-            "box1 box1 box2"
-            "box1 box1 box3"
-            "box4 box5 box6";
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
             outline: 1px dashed grey;
         }
 
@@ -29,30 +27,33 @@
         }
 
         #box1{
-            grid-area: box1;
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 3;
             background-color: red;
         }
 
-        #box2{
-            grid-area: box2;
+        /* #box2{
+            /* grid-area: box2; 
             background-color: blue;
         }
         #box3{
-            grid-area: box3;
+            /* grid-area: box3; 
             background-color: green;
         }
         #box4{
-            grid-area: box4;
+            /* grid-area: box4; 
             background-color: yellow;
         }
         #box5{
-            grid-area: box5;
+            /* grid-area: box5; 
             background-color: orange;
         }
         #box6{
-            grid-area: box6;
+            /* grid-area: box6; 
             background-color: purple;
-        }
+        } */
     </style>
 </head>
 <body>
