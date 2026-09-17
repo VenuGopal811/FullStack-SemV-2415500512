@@ -3,4 +3,8 @@
 
 @theme{
     --color-secd: #dedede;
+    --breakpoint-*:initial;
+    --breakpoint-tablet:40rem;
+    --breakpoint-laptop:64;
+    --breakpoint-desktop:80rem;
 }
