@@ -8,3 +8,7 @@
     --breakpoint-laptop:64;
     --breakpoint-desktop:80rem;
 }
+
+.heading{
+    @apply list-disc list-inside text-secd max-tablet:text-red-500;
+}
