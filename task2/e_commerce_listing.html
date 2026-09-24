@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+        }
+        #toolbar img {
+            height: 30px;
+            width: 30px;
+        }
+        #toolbar h4 {
+            margin: 0 10px;
+        }
+        #toolbar input[type="text"] {
+            flex-grow: 1;
+            margin: 0 10px;
+            padding: 5px;
+        }
+        .product-listing {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+        #rating span:first-child {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+    <div id="toolbar">
+        <img src="https://picsum.photos/20/30" alt="Logo">
+        <h4>ShopKart</h4>
+        <input type="text" placeholder="Search products...">
+        <img src="https://picsum.photos/20" href="#" alt="Cart">
+        <img src="https://picsum.photos/20" href="#" alt="Profile">
+    </div>
+    <div id="sidebar"></div>
+    <div class="product-listing">
+        <div class="product-card" id="grid-box1">
+            <img src="https://picsum.photos/200" alt="Product Image">
+            <h5>Category</h5>
+            <h3>Product Name</h3>
+            <div id="rating">
+                <span>★★★★☆</span>
+                <span>(100 reviews)</span>
+            </div>
+            <p id="new price">$19.99</p>
+            <p id="old price">$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card" id="grid-box2">
+            <img src="https://picsum.photos/200" alt="Product Image">
+            <h5>Category</h5>
+            <h3>Product Name</h3>
+            <div id="rating">
+                <span>★★★★☆</span>
+                <span>(100 reviews)</span>
+            </div>
+            <p id="new price">$19.99</p>
+            <p id="old price">$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card" id="grid-box3">
+            <img src="https://picsum.photos/200" alt="Product Image">
+            <h5>Category</h5>
+            <h3>Product Name</h3>
+            <div id="rating">
+                <span>★★★★☆</span>
+                <span>(100 reviews)</span>
+            </div>
+            <p id="new price">$19.99</p>
+            <p id="old price">$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card" id="grid-box4">
+            <img src="https://picsum.photos/200" alt="Product Image">
+            <h5>Category</h5>
+            <h3>Product Name</h3>
+            <div id="rating">
+                <span>★★★★☆</span>
+                <span>(100 reviews)</span>
+            </div>
+            <p id="new price">$19.99</p>
+            <p id="old price">$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card" id="grid-box5">
+            <img src="https://picsum.photos/200" alt="Product Image">
+            <h5>Category</h5>
+            <h3>Product Name</h3>
+            <div id="rating">
+                <span>★★★★☆</span>
+                <span>(100 reviews)</span>
+            </div>
+            <p id="new price">$19.99</p>
+            <p id="old price">$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card" id="grid-box6">
+            <img src="https://picsum.photos/200" alt="Product Image">
+            <h5>Category</h5>
+            <h3>Product Name</h3>
+            <div id="rating">
+                <span>★★★★☆</span>
+                <span>(100 reviews)</span>
+            </div>
+            <p id="new price">$19.99</p>
+            <p id="old price">$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</body>
+</html>
