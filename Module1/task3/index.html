@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <style>
+    body{margin:0;font-family:Arial,sans-serif;background:#edf3f7;color:#1f2937}
+    .wrap{max-width:1200px;margin:30px auto;padding:0 15px}
+    h1{margin:0 0 10px;font-size:42px;letter-spacing:-2px}
+    p{margin:0 0 20px;color:#64748b}
+    .layout{display:flex;gap:20px}
+    .sidebar{width:220px;background:linear-gradient(180deg,#0f1d34,#122744);color:#fff;border-radius:18px;padding:18px 14px}
+    .brand{display:flex;align-items:center;gap:10px;padding:8px 8px 18px;font-weight:700}
+    .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#3aa6ff,#0f5dff);display:flex;align-items:center;justify-content:center;font-size:14px}
+    .nav{display:grid;gap:8px}
+    .item{padding:10px 12px;border-radius:10px;color:#dfeaf8}
+    .item.active{background:rgba(255,255,255,.08)}
+    .user{display:flex;align-items:center;gap:10px;margin-top:26px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
+    .avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#f5d365,#fda085);display:flex;align-items:center;justify-content:center;color:#1e293b;font-size:12px;font-weight:700}
+    .main{flex:1;background:rgba(255,255,255,.4);border:1px solid #dfe7ee;border-radius:18px;padding:18px}
+    .top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .search{flex:1;background:#fff;border:1px solid #dfe7ee;border-radius:10px;padding:10px 12px}
+    .icons{display:flex;gap:8px}
+    .icon{width:34px;height:34px;border:1px solid #dfe7ee;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center}
+    h2{margin:0 0 18px;font-size:34px;letter-spacing:-1px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .card{background:#fff;border:1px solid #dfe7ee;border-radius:14px;padding:16px}
+    .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:#64748b;font-size:12px}
+    .val{font-size:28px;font-weight:700;letter-spacing:-1px}
+    .trend{font-size:12px;color:#16a34a;margin-top:8px}
+    .trend.red{color:#ef4444}
+    .content{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:18px}
+    .panel{background:#fff;border:1px solid #dfe7ee;border-radius:14px;padding:14px}
+    .panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-weight:700}
+    .panel-head span:last-child{color:#2563eb;font-size:12px}
+    .chart{height:170px;background:linear-gradient(180deg,#f8fbff,#f4f7fb);border:1px solid #e2e8f0;border-radius:10px}
+    .list{display:grid;gap:8px}
+    .row{display:grid;grid-template-columns:1.2fr .8fr .7fr;gap:8px;padding:8px 0;border-bottom:1px solid #eef2f7;font-size:13px}
+    .chip{display:inline-block;padding:4px 8px;background:#ecfdf5;color:#16a34a;border-radius:999px;font-size:11px;font-weight:700}
+    .chip.yellow{background:#fff7ed;color:#c2410c}
+    .bars{display:flex;align-items:flex-end;gap:8px;height:120px;padding-top:12px}
+    .bars span{flex:1;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#5aa3ff,#2563eb)}
+    .bottom{display:flex;gap:18px;margin-top:18px}
+    .mini{width:300px;background:#fff;border:1px solid #dfe7ee;border-radius:16px;padding:14px}
+    .mini-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .mini-box{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .small{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px}
+    .small div:first-child{font-size:11px;color:#64748b}
+    .small div:last-child{font-size:22px;font-weight:700;margin-top:6px}
+    .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .meta-box{background:#fff;border:1px solid #dfe7ee;border-radius:14px;padding:16px}
+    .meta-box h4{margin:0 0 12px;font-size:16px}
+    .meta-box div{margin:6px 0;color:#475569;font-size:13px}
+    @media (max-width:900px){.layout{display:block}.sidebar{width:100%;margin-bottom:18px}.stats{grid-template-columns:repeat(2,1fr)}.content,.meta{grid-template-columns:1fr}.bottom{display:grid;grid-template-columns:1fr}} @media (max-width:520px){.stats{grid-template-columns:1fr}.top{flex-wrap:wrap}.search{order:3;width:100%}h2{font-size:28px}} 
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand"><div class="logo">A</div>AdminPro</div>
+        <div class="nav">
+          <div class="item active">Dashboard</div>
+          <div class="item">Analytics</div>
+          <div class="item">Users</div>
+          <div class="item">Orders</div>
+          <div class="item">Products</div>
+          <div class="item">Settings</div>
+        </div>
+        <div class="user">
+          <div class="avatar">AT</div>
+          <div>
+            <div>Ayush Tiwari</div>
+            <small>Admin</small>
+          </div>
+        </div>
+      </aside>
+
+      <div class="main">
+        <div class="top">
+          <div class="search">Search...</div>
+          <div class="icons"><div class="icon">✦</div><div class="icon">🔔</div><div class="icon">⚙</div></div>
+        </div>
+        <h2>Dashboard</h2>
+
+        <div class="stats">
+          <div class="card"><div class="head"><span>Total Revenue</span><span>↗</span></div><div class="val">₹1,24,532</div><div class="trend">▲ 12% from last month</div></div>
+          <div class="card"><div class="head"><span>Total Orders</span><span>◫</span></div><div class="val">892</div><div class="trend red">▼ 6% from last month</div></div>
+          <div class="card"><div class="head"><span>Active Users</span><span>◎</span></div><div class="val">3,521</div><div class="trend">▲ 14% from last month</div></div>
+          <div class="card"><div class="head"><span>Conversion</span><span>↘</span></div><div class="val">4.2%</div><div class="trend">▲ 2% from last month</div></div>
+        </div>
+
+        <div class="content">
+          <div class="panel">
+            <div class="panel-head"><span>Revenue Overview</span><span>View all</span></div>
+            <div class="chart"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><span>Recent Orders</span><span>View all</span></div>
+            <div class="list">
+              <div class="row"><span>Amrit Kumar</span><span>₹1,299</span><span class="chip">Paid</span></div>
+              <div class="row"><span>Rahul Sharma</span><span>₹2,499</span><span class="chip yellow">Pending</span></div>
+              <div class="row"><span>Priya Singh</span><span>₹3,690</span><span class="chip">Shipped</span></div>
+              <div class="row"><span>Neha Gupta</span><span>₹2,699</span><span class="chip">Paid</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom">
+          <div class="panel" style="flex:1">
+            <div class="panel-head"><span>Traffic Overview</span><span>View all</span></div>
+            <div class="bars"><span style="height:45%"></span><span style="height:60%"></span><span style="height:70%"></span><span style="height:55%"></span><span style="height:80%"></span><span style="height:68%"></span></div>
+          </div>
+          <div class="panel" style="flex:1">
+            <div class="panel-head"><span>Top Products</span><span>View all</span></div>
+            <div class="list">
+              <div class="row"><span>Laptop Pro</span><span>₹2,450</span><span style="color:#16a34a">+12%</span></div>
+              <div class="row"><span>Earbuds</span><span>₹1,992</span><span style="color:#16a34a">+8%</span></div>
+              <div class="row"><span>Smart Watch</span><span>₹1,203</span><span style="color:#16a34a">+6%</span></div>
+              <div class="row"><span>Backpack</span><span>₹962</span><span style="color:#16a34a">+4%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
