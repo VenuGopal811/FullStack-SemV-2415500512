@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Quiz Arena</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#121a2d;--panel2:#19243b;--text:#eef3ff;--muted:#9aa9c7;--accent:#7c9cff;--green:#22c55e;--red:#ef4444;--border:#2a3856}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at top,#1a2a4b 0,#0b1020 55%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);display:flex;justify-content:center;padding:28px 16px}
+button{font:inherit;cursor:pointer}
+.app{width:min(820px,100%)}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
+.brand{font-size:1.15rem;font-weight:800;letter-spacing:.02em}.brand span{color:var(--accent)}
+.badge{border:1px solid var(--border);border-radius:999px;padding:7px 12px;color:var(--muted);font-size:.82rem}
+.card{background:rgba(18,26,45,.94);border:1px solid var(--border);border-radius:22px;padding:clamp(20px,5vw,38px);box-shadow:0 24px 70px #0005}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:14px;color:var(--muted);font-size:.9rem;margin-bottom:13px}
+.progress{height:7px;background:#26324b;border-radius:20px;overflow:hidden;margin-bottom:30px}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#6e8bff,#a78bfa);transition:width .25s}
+.timer{font-variant-numeric:tabular-nums;color:#fbbf24;font-weight:800}
+h1{font-size:clamp(1.65rem,4vw,2.3rem);line-height:1.2;margin:0 0 12px}
+.question{font-size:1.12rem;line-height:1.65;margin:0 0 25px;color:#e1e8fb}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.option{display:flex;align-items:center;gap:12px;text-align:left;padding:16px;border:1px solid var(--border);border-radius:14px;background:var(--panel2);color:var(--text);min-height:68px;transition:transform .15s,border-color .15s,background .15s}
+.option:hover:not(:disabled){transform:translateY(-2px);border-color:var(--accent)}
+.key{display:grid;place-items:center;flex:0 0 32px;height:32px;border-radius:9px;background:#283654;color:#b9c9ef;font-weight:800}
+.option.correct{background:#123d2b;border-color:var(--green)}.option.correct .key{background:var(--green);color:#052e16}
+.option.wrong{background:#471f2a;border-color:var(--red)}.option.wrong .key{background:var(--red);color:#fff}
+.option:disabled{cursor:default;opacity:1}
+.explanation{display:none;margin-top:18px;border:1px solid var(--border);border-radius:14px;padding:16px;background:#0d1527;color:#c4d0e8;line-height:1.6}
+.explanation.show{display:block}.explanation strong{color:var(--text)}
+.actions{display:flex;justify-content:space-between;gap:12px;margin-top:25px}
+.btn{border:1px solid var(--border);border-radius:12px;padding:12px 18px;font-weight:750;color:var(--text);background:#202c46}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#081126}.btn:disabled{opacity:.4;cursor:not-allowed}
+.screen{display:none;text-align:center}.screen.active{display:block}.quiz-screen.active{display:block}
+.result-score{font-size:3.5rem;font-weight:900;letter-spacing:-.05em;margin:12px 0}.result-sub{color:var(--muted);line-height:1.6}
+.review-list{display:grid;gap:12px;margin:24px 0;text-align:left}
+.review-item{border:1px solid var(--border);border-radius:14px;padding:16px;background:#0d1527}
+.review-item h3{font-size:1rem;margin:0 0 10px;line-height:1.5}.review-item p{margin:7px 0;color:var(--muted);line-height:1.5}.review-item .answer{color:#86efac}.review-item .your-answer{color:#fca5a5}
+.result-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:24px}
+@media(max-width:560px){.options{grid-template-columns:1fr}.topline{font-size:.82rem}.card{border-radius:18px}.actions .btn{padding:11px 14px}}
+</style>
+</head>
+<body>
+<main class="app">
+<header><div class="brand">JS <span>QUIZ ARENA</span></div><div class="badge">JavaScript fundamentals</div></header>
+<section class="card quiz-screen active" id="quizScreen">
+<div class="topline"><span id="questionCount">Question 1 of 25</span><span>Score <strong id="score">0</strong></span><span class="timer" id="timer">00:30</span></div>
+<div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+<h1 id="heading">Ready to test your JavaScript?</h1>
+<p class="question" id="question"></p>
+<div class="options" id="options"></div>
+<div class="explanation" id="explanation"></div>
+<div class="actions"><button class="btn" id="restartBtn">Restart</button><button class="btn primary" id="nextBtn" disabled>Next question →</button></div>
+</section>
+<section class="card screen" id="resultScreen">
+<div class="badge">Quiz complete</div><h1 style="margin-top:20px">Your results</h1><div class="result-score" id="finalScore">0/25</div><p class="result-sub" id="rating"></p>
+<div class="result-actions"><button class="btn primary" id="reviewBtn">Review wrong answers</button><button class="btn" id="playAgainBtn">Play again</button></div>
+<div class="review-list" id="reviewList"></div>
+</section>
+</main>
+<script>
+const questions = [
+{q:"Which keyword declares a block-scoped variable that can be reassigned?",o:["var","let","const","static"],a:1,e:"let declares a block-scoped variable that can be reassigned. const is also block-scoped but cannot be reassigned."},
+{q:"What does typeof null return in JavaScript?",o:['"null"','"undefined"','"object"','"boolean"'],a:2,e:"This is a long-standing JavaScript quirk: typeof null returns \"object\"."},
+{q:"Which method adds an item to the end of an array?",o:["push()","pop()","shift()","unshift()"],a:0,e:"push() appends one or more elements to the end of an array."},
+{q:"What is the result of 2 + '2'?",o:["4","'22'","NaN","TypeError"],a:1,e:"When one operand is a string, + performs string concatenation, producing \"22\"."},
+{q:"Which value is strictly equal to itself in every case listed?",o:["NaN","undefined","null","0"],a:3,e:"0 === 0 is true. NaN is the notable value that is not strictly equal to itself."},
+{q:"Which array method creates a new array by transforming each element?",o:["filter()","forEach()","map()","find()"],a:2,e:"map() returns a new array containing the result of calling the callback on each element."},
+{q:"What does === check?",o:["Value only","Type only","Value and type","Whether values are truthy"],a:2,e:"Strict equality compares values without coercing their types."},
+{q:"Which statement correctly creates an arrow function?",o:["function => foo()","const foo = () => {}","const foo -> {}","arrow foo() {}"],a:1,e:"Arrow functions use the => syntax, for example const foo = () => {}."},
+{q:"What is Boolean('false')?",o:["false","true","undefined","Throws an error"],a:1,e:"Every non-empty string is truthy, including the string \"false\"."},
+{q:"Which method converts a JSON string into a JavaScript value?",o:["JSON.stringify()","JSON.parse()","JSON.convert()","Object.fromJSON()"],a:1,e:"JSON.parse() parses JSON text into a JavaScript value. JSON.stringify() does the reverse."},
+{q:"What does Array.isArray([]) return?",o:["0","undefined","true","false"],a:2,e:"Array.isArray() reliably checks whether a value is an array."},
+{q:"Which keyword is used to handle exceptions?",o:["catch","throw","try","All of these"],a:3,e:"try, catch, and throw are all part of JavaScript exception handling."},
+{q:"What is the output of '5' - 2?",o:["'52'","3","NaN","TypeError"],a:1,e:"Subtraction converts numeric strings to numbers, so '5' - 2 evaluates to 3."},
+{q:"Which method selects the first element matching a CSS selector?",o:["getElementById()","querySelector()","querySelectorAll()","selectOne()"],a:1,e:"document.querySelector() returns the first matching element, or null if none matches."},
+{q:"What does Promise.all() do if one promise rejects?",o:["Ignores the rejection","Waits forever","Rejects with that reason","Retries automatically"],a:2,e:"Promise.all() rejects as soon as one input promise rejects."},
+{q:"Which declaration cannot be reassigned?",o:["let","var","const","function"],a:2,e:"A const binding cannot be reassigned, though an object or array stored in it may still be mutated."},
+{q:"What does [1, 2, 3].filter(n => n > 1) return?",o:["[1]","[2, 3]","[1, 2, 3]","true"],a:1,e:"filter() keeps every element for which the callback returns a truthy value."},
+{q:"Which operator provides a fallback only for null or undefined?",o:["||","&&","??","?."],a:2,e:"The nullish coalescing operator ?? uses its right side only when the left side is null or undefined."},
+{q:"What is the purpose of async before a function?",o:["Makes it run in a worker","Makes it return a promise","Pauses the whole program","Catches every error"],a:1,e:"An async function always returns a promise; await can be used inside it."},
+{q:"Which event fires when a user submits a form?",o:["click","change","submit","input"],a:2,e:"The submit event fires on a form when it is submitted, including through supported keyboard actions."},
+{q:"What does 'use strict' enable?",o:["Strict mode","TypeScript","Automatic semicolons","Private variables everywhere"],a:0,e:"The directive enables strict mode, which catches certain mistakes and changes some language behavior."},
+{q:"Which syntax safely accesses a possibly missing nested property?",o:["obj..user","obj?.user","obj??user","obj::user"],a:1,e:"Optional chaining (?.) stops and returns undefined if the value before it is null or undefined."},
+{q:"What does setTimeout(fn, 0) guarantee?",o:["Runs immediately before other code","Runs after the current call stack clears","Runs in parallel on another thread","Runs exactly after zero milliseconds"],a:1,e:"The callback is scheduled for later; it runs after the current synchronous work, not immediately."},
+{q:"Which method returns a new array containing a portion of an array?",o:["splice()","slice()","sort()","reverse()"],a:1,e:"slice() returns a shallow copy of a selected portion without modifying the original array."},
+{q:"What is the result of 0 == false?",o:["true","false","TypeError","undefined"],a:0,e:"Loose equality performs coercion, so 0 == false is true. Prefer === when strict comparison is intended."}
+];
+let index=0,score=0,answered=false,timeLeft=30,timerId=null,results=[];
+const $=id=>document.getElementById(id);
+function start(){clearInterval(timerId);index=0;score=0;results=[];$("score").textContent=score;$("quizScreen").classList.add("active");$("resultScreen").classList.remove("active");$("reviewList").innerHTML="";renderQuestion()}
+function renderQuestion(){answered=false;timeLeft=30;$("heading").textContent="Choose the correct answer";$("questionCount").textContent=`Q ${index+1}/${questions.length}`;$("score").textContent=score;$("progressFill").style.width=`${index/questions.length*100}%`;$("question").textContent=questions[index].q;$("explanation").classList.remove("show");$("explanation").innerHTML="";$("nextBtn").disabled=true;$("nextBtn").textContent=index===questions.length-1?"See results →":"Next question →";$("options").innerHTML="";
+questions[index].o.forEach((option,i)=>{const button=document.createElement("button");button.className="option";button.innerHTML=`<span class="key">${String.fromCharCode(65+i)}</span><span>${option.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</span>`;button.addEventListener("click",()=>choose(i));$("options").appendChild(button)});updateTimer();clearInterval(timerId);timerId=setInterval(()=>{timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerId);if(!answered)choose(-1)}},1000)}
+function updateTimer(){$("timer").textContent=`00:${String(timeLeft).padStart(2,"0")}`;$("timer").style.color=timeLeft<=8?"#ef4444":"#fbbf24"}
+function choose(choice){if(answered)return;answered=true;clearInterval(timerId);const item=questions[index];const buttons=[...$("options").children];buttons.forEach((b,i)=>{b.disabled=true;if(i===item.a)b.classList.add("correct");if(i===choice&&choice!==item.a)b.classList.add("wrong")});if(choice===item.a)score++;results.push({question:item.q,options:item.o,correct:item.a,chosen:choice,explanation:item.e});$("score").textContent=score;$("explanation").innerHTML=`<strong>${choice===item.a?"Correct!":choice===-1?"Time's up!":"Not quite."}</strong> ${item.e}`;$("explanation").classList.add("show");$("nextBtn").disabled=false;$("progressFill").style.width=`${(index+1)/questions.length*100}%`}
+function finish(){clearInterval(timerId);$("quizScreen").classList.remove("active");$("resultScreen").classList.add("active");$("finalScore").textContent=`${score}/${questions.length}`;const pct=score/questions.length*100;$("rating").textContent=pct>=90?"Outstanding! You have a strong grasp of JavaScript.":pct>=75?"Great work! Your fundamentals are in good shape.":pct>=50?"Good effort. A little revision will take you further.":"Keep practising. Review the explanations and give it another shot.";const wrong=results.filter(r=>r.chosen!==r.correct);$("reviewBtn").disabled=wrong.length===0;$("reviewBtn").textContent=wrong.length?`Review wrong answers (${wrong.length})`:"No wrong answers to review";$("reviewList").innerHTML=""}
+$("nextBtn").addEventListener("click",()=>{if(!answered)return;if(index<questions.length-1){index++;renderQuestion()}else finish()});
+$("restartBtn").addEventListener("click",start);$("playAgainBtn").addEventListener("click",start);
+$("reviewBtn").addEventListener("click",()=>{const list=$("reviewList");if(list.children.length){list.innerHTML="";$("reviewBtn").textContent=`Review wrong answers (${results.filter(r=>r.chosen!==r.correct).length})`;return}const wrong=results.filter(r=>r.chosen!==r.correct);list.innerHTML=wrong.map((r,i)=>`<article class="review-item"><h3>${i+1}. ${r.question}</h3><p class="your-answer">Your answer: ${r.chosen<0?"No answer":r.options[r.chosen]}</p><p class="answer">Correct answer: ${r.options[r.correct]}</p><p>${r.explanation}</p></article>`).join("");$("reviewBtn").textContent="Hide review";list.scrollIntoView({behavior:"smooth",block:"start"})});
+start();
+</script>
+</body>
+</html>
