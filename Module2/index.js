@@ -1,13 +1,13 @@
-var counter = 0;
+let a= new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        return resolve("Success");
+    }, 1000);
+});
 
-function clicked() {
-    counter++;
-    var elem = document.createElement("p");
-    elem.textContent = counter;
-    if(counter>=1){
-    document.body.replace(p,elem);
-    }
-    else{
-    document.body.append(elem);
-    }
-}
+a.then((res)=>{
+    console.log(res);
+}).catch((rej)=>{
+    console.log(rej);
+}).finally(()=>{
+    console.log("code completed");
+});

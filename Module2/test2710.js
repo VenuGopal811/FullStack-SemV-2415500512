@@ -14,4 +14,4 @@ function doSomething(callback) {
 // Asynchronous
 function doSomething(callback) {
   setTimeout(callback, 0);
-}
+} 
